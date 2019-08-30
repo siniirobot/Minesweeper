@@ -79,7 +79,7 @@ public class Model {
             for (Cell[] rows : gameField.getGameField()) {
                 for (Cell el : rows) {
                     if (el.isMine()) {
-                        el.setRealContent(characters.getCharacters()[10]);
+                        el.setVisibleContent(characters.getCharacters()[10]);
                     }
                 }
             }

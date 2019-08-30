@@ -485,15 +485,17 @@ public class ViewGUI {
                             }
 
                         } catch (BoomException boomException) {
-
+                            for (int i = 0; i < jButtons.length; i++) {
+                                for (int j = 0; j < jButtons[0].length; j++) {
+                                    jButtons[i][j].setIcon((ImageIcon) model.getGameField().getGameField()[i][j].getVisibleContent());
+                                }
+                            }
                             JOptionPane.showMessageDialog(null, boomException.getMessage());
-
                             getNewPanel(getMainMenu());
                         } finally {
                             for (int i = 0; i < jButtons.length; i++) {
                                 for (int j = 0; j < jButtons[0].length; j++) {
                                     jButtons[i][j].setIcon((ImageIcon) model.getGameField().getGameField()[i][j].getVisibleContent());
-
                                 }
                             }
                         }
