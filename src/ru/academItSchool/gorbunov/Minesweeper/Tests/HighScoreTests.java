@@ -1,6 +1,5 @@
 
 package ru.academItSchool.gorbunov.Minesweeper.Tests;
-/*
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -35,6 +34,15 @@ public class HighScoreTests {
         };
     }
 
+    @DataProvider(name = "DeleteFile")
+    public Object[][] deleteFile() {
+        return new Object[][]{
+                new Object[]{new EasyDifficulty()},
+                new Object[]{"Eva", 26, new NormDifficulty()},
+                new Object[]{"Irma", 78, new HardDifficulty()},
+        };
+    }
+
     @Test(dataProvider = "AddToTable")
     public void testAdd(String name, int time, Difficulty difficulty) {
         HighScores highScore = new HighScores();
@@ -61,7 +69,14 @@ public class HighScoreTests {
         }
     }
 
+    @Test(dataProvider = "DeleteFile")
+    public void testDelete(Difficulty difficulty) {
+        try {
+          HighScores highScores = new HighScores();
+          highScores.getDeleteFile(difficulty.getName());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
-
-*/

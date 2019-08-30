@@ -3,9 +3,6 @@ package ru.academItSchool.gorbunov.Minesweeper.Model.HighScore;
 import ru.academItSchool.gorbunov.Minesweeper.Model.Difficulty.Difficulty;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class HighScores implements Serializable {
     /**
@@ -39,6 +36,18 @@ public class HighScores implements Serializable {
         }
 
         return path;
+    }
+
+    /**
+     * Удаление файла она же очистка таблицы рекордов.
+     * @param difficult выбраная сложность.
+     * Выбрасывается исключение если таблица итак пуста.
+     */
+    public void getDeleteFile(Difficulty.DifficultyName difficult) {
+        File file = new File(getFileName(difficult));
+        if (!file.delete()){
+            throw new IllegalArgumentException("Таблица еще пуста.");
+        }
     }
 
     /**

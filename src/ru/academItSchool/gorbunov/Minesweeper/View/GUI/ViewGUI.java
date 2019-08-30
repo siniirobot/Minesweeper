@@ -501,7 +501,6 @@ public class ViewGUI {
                         }
                     }
                 });
-
                 jPanel.add(jButtons[i][j]);
             }
         }
