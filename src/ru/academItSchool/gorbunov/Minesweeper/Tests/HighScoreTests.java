@@ -73,7 +73,7 @@ public class HighScoreTests {
     public void testDelete(Difficulty difficulty) {
         try {
           HighScores highScores = new HighScores();
-          highScores.getDeleteFile(difficulty.getName());
+          highScores.getDeleteFile(difficulty);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

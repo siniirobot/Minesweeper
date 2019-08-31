@@ -43,8 +43,8 @@ public class HighScores implements Serializable {
      * @param difficult выбраная сложность.
      * Выбрасывается исключение если таблица итак пуста.
      */
-    public void getDeleteFile(Difficulty.DifficultyName difficult) {
-        File file = new File(getFileName(difficult));
+    public void getDeleteFile(Difficulty difficult) {
+        File file = new File(getFileName(difficult.getName()));
         if (!file.delete()){
             throw new IllegalArgumentException("Таблица еще пуста.");
         }
