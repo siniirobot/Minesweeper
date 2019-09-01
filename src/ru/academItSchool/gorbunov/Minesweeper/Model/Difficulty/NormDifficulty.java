@@ -10,7 +10,7 @@ public class NormDifficulty implements Difficulty {
         this.name = DifficultyName.NORM;
         this.columns = 16;
         this.rows = 16;
-        this.mines = 40;
+        this.mines = 1;
     }
 
     @Override

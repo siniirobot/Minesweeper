@@ -39,16 +39,20 @@ public class HighScores implements Serializable {
     }
 
     /**
-     * Удаление файла она же очистка таблицы рекордов.
+     * Очистка файла она же очистка таблицы рекордов.
+     *
      * @param difficult выбраная сложность.
-     * Выбрасывается исключение если таблица итак пуста.
+     *                  Выбрасывается исключение если таблица итак пуста.
      */
-    public void getDeleteFile(Difficulty difficult) {
-        File file = new File(getFileName(difficult.getName()));
-        if (!file.delete()){
+    public void getClearFile(Difficulty difficult) {
+        try {
+            PrintWriter writer = new PrintWriter(getFileName(difficult.getName()));
+            writer.print("");
+        } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Таблица еще пуста.");
         }
     }
+
 
     /**
      * Открывает файл ,десириализует объект из потока(В случае отсутсвия файла создает его и записывает игрока

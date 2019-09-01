@@ -513,11 +513,13 @@ public class ViewGUI {
     private Container getHeightScoreMenu() {
         JPanel mainPanel = new JPanel();
         JTabbedPane switchDifficult = new JTabbedPane();
+        EasyDifficulty easyDifficulty = new EasyDifficulty();
+        NormDifficulty normDifficulty = new NormDifficulty();
+        HardDifficulty hardDifficulty = new HardDifficulty();
 
-        switchDifficult.add("Легко", getPrintHighScoreTableInPlane(new EasyDifficulty()));
-        switchDifficult.add("Нормально", getPrintHighScoreTableInPlane(new NormDifficulty()));
-        switchDifficult.add("Сложно", getPrintHighScoreTableInPlane(new HardDifficulty()));
-
+        switchDifficult.add("Легко", getPrintHighScoreTableInPlane(easyDifficulty));
+        switchDifficult.add("Нормально", getPrintHighScoreTableInPlane(normDifficulty));
+        switchDifficult.add("Сложно", getPrintHighScoreTableInPlane(hardDifficulty));
         JButton back = new JButton("Назад");
         back.addMouseListener(new MouseAdapter() {
             @Override
@@ -525,8 +527,34 @@ public class ViewGUI {
                 getNewPanel(getMainMenu());
             }
         });
+        JButton clearTable = new JButton("Очистить таблицу");
+        clearTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                HighScores highScores = new HighScores();
+                try{
+                    int selectedTab = switchDifficult.getSelectedIndex();
+                    switch (selectedTab){
+                        case 0:
+                            highScores.getClearFile(easyDifficulty);
+                            switchDifficult.revalidate();
+                            switchDifficult.repaint();
+                            break;
+                        case 1:
+                            highScores.getClearFile(normDifficulty);
+                            break;
+                        case 2:
+                            highScores.getClearFile(hardDifficulty);
+                    }
+                }catch (IllegalArgumentException e1) {
+                    JOptionPane.showMessageDialog(null, e1.getMessage());
+                }
+
+            }
+        });
         mainPanel.add(switchDifficult, BorderLayout.NORTH);
         mainPanel.add(back, BorderLayout.SOUTH);
+        mainPanel.add(clearTable,BorderLayout.SOUTH);
         mainPanel.setPreferredSize(new Dimension(300, 260));
         return mainPanel;
     }

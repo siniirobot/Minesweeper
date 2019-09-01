@@ -38,8 +38,8 @@ public class HighScoreTests {
     public Object[][] deleteFile() {
         return new Object[][]{
                 new Object[]{new EasyDifficulty()},
-                new Object[]{"Eva", 26, new NormDifficulty()},
-                new Object[]{"Irma", 78, new HardDifficulty()},
+                new Object[]{new NormDifficulty()},
+                new Object[]{new HardDifficulty()},
         };
     }
 
@@ -73,7 +73,7 @@ public class HighScoreTests {
     public void testDelete(Difficulty difficulty) {
         try {
           HighScores highScores = new HighScores();
-          highScores.getDeleteFile(difficulty);
+          highScores.getClearFile(difficulty);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
