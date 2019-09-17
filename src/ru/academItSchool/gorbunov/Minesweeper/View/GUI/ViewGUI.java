@@ -534,18 +534,24 @@ public class ViewGUI {
                 HighScores highScores = new HighScores();
                 try{
                     int selectedTab = switchDifficult.getSelectedIndex();
+                    switchDifficult.remove(selectedTab);
                     switch (selectedTab){
                         case 0:
                             highScores.getClearFile(easyDifficulty);
-                            switchDifficult.revalidate();
-                            switchDifficult.repaint();
+                            switchDifficult.add(getPrintHighScoreTableInPlane(easyDifficulty),0);
+                            switchDifficult.setTitleAt(selectedTab,"Легко");
                             break;
                         case 1:
                             highScores.getClearFile(normDifficulty);
+                            switchDifficult.add(getPrintHighScoreTableInPlane(normDifficulty),0);
+                            switchDifficult.setTitleAt(selectedTab,"Нормально");
                             break;
                         case 2:
                             highScores.getClearFile(hardDifficulty);
+                            switchDifficult.add(getPrintHighScoreTableInPlane(hardDifficulty),0);
+                            switchDifficult.setTitleAt(selectedTab,"Сложно");
                     }
+                    switchDifficult.setSelectedIndex(selectedTab);
                 }catch (IllegalArgumentException e1) {
                     JOptionPane.showMessageDialog(null, e1.getMessage());
                 }
