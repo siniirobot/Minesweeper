@@ -365,7 +365,7 @@ public class ViewGUI {
      * @return результат проверки
      */
     private int checkInputForArbitraryInput(int from, int to, int number) {
-        return number < from ? from : number > to ? to : number;
+        return number < from ? from : Math.min(number, to);
     }
 
     /**
