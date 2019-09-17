@@ -13,7 +13,7 @@ public class HighScores implements Serializable {
      */
     public String getFileName(Difficulty.DifficultyName difficult) {
         String path = System.getenv("APPDATA");
-        if (path.isEmpty()) {
+        if (path == null) {
             path = System.getProperty("user.home");
         }
         File makeDir = new File(path, ".Minesweeper").getAbsoluteFile();
